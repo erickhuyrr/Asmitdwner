@@ -563,13 +563,21 @@
                 });
             }
 
-            // Meta/Pinterest/CapCut format: downloads array
+            // Meta/Pinterest/CapCut/TikTok format: downloads array
             if (!hasDownloads && data.downloads && Array.isArray(data.downloads) && data.downloads.length > 0) {
                 data.downloads.forEach((item, index) => {
                     if (item.url) {
-                        const quality = item.quality || item.resolution || item.format || `Quality ${index + 1}`;
-                        const isAudio = item.type === 'audio' || (quality && quality.toLowerCase().includes('audio'));
-
+                        // Extract quality from text field (e.g., "Download MP4 HD", "Download MP3")
+                        const text = item.text || item.quality || item.resolution || item.format || `Quality ${index + 1}`;
+                        
+                        // Determine if it's audio based on text or type
+                        const isAudio = item.type === 'audio' || 
+                                       (text && (text.toLowerCase().includes('mp3') || 
+                                                text.toLowerCase().includes('audio')));
+                        
+                        // Extract quality label from text (remove "Download" prefix)
+                        let quality = text.replace(/^Download\s+/i, '').trim();
+                        
                         html += createDownloadLink(
                             item.url, 
                             isAudio ? '🎵 Audio' : '🎬 Video',
@@ -616,31 +624,7 @@
                     }
                 });
             }
-            // TikTok format: downloads array
-            if (!hasDownloads && data.downloads && Array.isArray(data.downloads) && data.downloads.length > 0) {
-                data.downloads.forEach((item, index) => {
-                    if (item.url) {
-                        // Extract quality from text field (e.g., "Download MP4 HD", "Download MP3")
-                        const text = item.text || item.quality || item.resolution || item.format || `Quality ${index + 1}`;
-                        
-                        // Determine if it's audio based on text or type
-                        const isAudio = item.type === 'audio' || 
-                                       (text && (text.toLowerCase().includes('mp3') || 
-                                                text.toLowerCase().includes('audio')));
-                        
-                        // Extract quality label from text (remove "Download" prefix)
-                        let quality = text.replace(/^Download\s+/i, '').trim();
-                        
-                        html += createDownloadLink(
-                            item.url, 
-                            isAudio ? '🎵 Audio' : '🎬 Video',
-                            quality,
-                            isAudio
-                        );
-                        hasDownloads = true;
-                    }
-                });
-            }
+
             // Alternative: Check for videos array
             if (!hasDownloads && data.videos && Array.isArray(data.videos) && data.videos.length > 0) {
                 data.videos.forEach((video, index) => {
