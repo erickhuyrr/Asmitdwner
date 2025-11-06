@@ -1,257 +1,203 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ne">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Welcome — Asmit</title>
-    <style>
-      :root {
-        --bg1: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        --card: rgba(255, 255, 255, 0.06);
-        --accent: #7c3aed;
-        --glass: rgba(255, 255, 255, 0.04);
-        --radius: 14px;
-        color-scheme: dark;
-      }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome — Asmit</title>
+  <style>
+    :root{
+      --bg1: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --card: rgba(255,255,255,0.06);
+      --accent: #7c3aed;
+      --radius: 14px;
+      color-scheme: dark;
+    }
 
-      /* reset */
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      html,
-      body {
-        height: 100%;
-      }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
 
-      body {
-        font-family:
-          Inter,
-          ui-sans-serif,
-          system-ui,
-          -apple-system,
-          "Segoe UI",
-          Roboto,
-          "Helvetica Neue",
-          Arial;
-        background: var(--bg1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-        color: #e6eef8;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg1);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+    }
 
-      .container {
-        width: 100%;
-        max-width: 980px;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.02),
-          rgba(255, 255, 255, 0.01)
-        );
-        border-radius: 20px;
-        padding: 34px;
-        box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
-        display: grid;
-        grid-template-columns: 1fr 360px;
-        gap: 28px;
-        align-items: center;
-        backdrop-filter: blur(6px) saturate(120%);
-      }
+    .container{
+      width:100%;
+      max-width:980px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:20px;
+      padding:34px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:28px;
+      align-items:center;
+      backdrop-filter: blur(6px) saturate(120%);
+    }
 
-      .hero {
-        padding-right: 10px;
-      }
+    h1{
+      font-size: clamp(24px, 3.2vw, 38px);
+      line-height:1.05;
+      margin-bottom:14px;
+      letter-spacing:-0.02em;
+    }
 
-      h1 {
-        font-size: clamp(24px, 3.2vw, 38px);
-        line-height: 1.05;
-        margin-bottom: 14px;
-        letter-spacing: -0.02em;
-      }
+    p.lead{
+      color: #cbd5e1;
+      margin-bottom:20px;
+      font-size:16px;
+    }
 
-      p.lead {
-        color: #cbd5e1;
-        margin-bottom: 20px;
-        font-size: 16px;
-      }
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
 
-      .actions {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
+    .btn{
+      background: linear-gradient(90deg, var(--accent), #5b21b6);
+      border: none;
+      color:white;
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow: 0 6px 18px rgba(124,58,237,0.18);
+      transition: transform .14s ease, box-shadow .14s ease;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
 
-      .btn {
-        background: linear-gradient(90deg, var(--accent), #5b21b6);
-        border: none;
-        color: white;
-        padding: 12px 18px;
-        border-radius: 12px;
-        font-weight: 600;
-        cursor: pointer;
-        box-shadow: 0 6px 18px rgba(124, 58, 237, 0.18);
-        transition:
-          transform 0.14s ease,
-          box-shadow 0.14s ease,
-          opacity 0.14s;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .btn:active {
-        transform: translateY(1px);
-      }
-      .btn.secondary {
-        background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        box-shadow: none;
-        color: #cbd5e1;
-        font-weight: 600;
-      }
+    .btn:active{ transform: translateY(1px) }
 
-      /* card on right */
-      .card {
-        background: var(--card);
-        border-radius: var(--radius);
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        align-items: stretch;
-        justify-content: center;
-        min-height: 180px;
-      }
+    .btn.secondary{
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #cbd5e1;
+      font-weight:600;
+    }
 
-      .avatar {
-        height: 72px;
-        width: 72px;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #334155, #0ea5e9);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        font-size: 20px;
-        color: white;
-        box-shadow: 0 8px 18px rgba(2, 6, 23, 0.5);
-      }
+    .card{
+      background: var(--card);
+      border-radius: var(--radius);
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:stretch;
+      justify-content:center;
+      min-height:180px;
+    }
 
-      .meta {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-      }
+    /* 👇 Avatar with photo */
+    .avatar{
+      height:72px;
+      width:72px;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 8px 18px rgba(2,6,23,0.5);
+    }
 
-      .small {
-        font-size: 13px;
-        color: #9fb0d6;
-      }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
 
-      footer.note {
-        margin-top: 10px;
-        font-size: 12px;
-        color: #879bb6;
-      }
+    .meta{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
 
-      /* responsive */
-      @media (max-width: 880px) {
-        .container {
-          grid-template-columns: 1fr;
-          padding: 20px;
-          gap: 18px;
-        }
-        .card {
-          order: -1;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <main class="container" role="main" aria-labelledby="welcomeTitle">
-      <section class="hero" aria-label="Welcome message">
-        <h1 id="welcomeTitle">नमस्ते! 👋 Welcome to Asmit's Site</h1>
-        <p class="lead">
-          यो छोटो स्वागत पेज हो — यहाँबाट तपाईँले आफ्नो पेजहरू खोल्न सक्नुहुन्छ।
-          तलको बटनले <strong>asmit.html</strong> फाइल खोल्छ (समान फोल्डरमा
-          राख्नुहोस्)।
-        </p>
+    .small{
+      font-size:13px;
+      color:#9fb0d6;
+    }
 
-        <div class="actions" role="group" aria-label="Primary actions">
-          <a href="#" id="uploadLink" class="btn" title="Open Asmit Page">
-            ➤ Open Asmit Page
-          </a>
+    footer.note{
+      margin-top:10px;
+      font-size:12px;
+      color:#879bb6;
+    }
 
-          <a href="#" id="learnMore" class="btn secondary" title="Learn more">
-            ℹ️ Learn more
-          </a>
-        </div>
+    @media (max-width:880px){
+      .container{ grid-template-columns: 1fr; padding:20px; gap:18px; }
+      .card{ order: -1; }
+    }
 
-        <p class="note small" style="margin-top: 18px">
-          टिप: यदि indrx.html अर्को फोल्डरमा छ भने path परिवर्तन गर्नुहोस् —
-          उदाहरण: <code>pages/asmit.html</code>
-        </p>
-      </section>
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>नमस्ते 👋 Welcome to Asmit's Site</h1>
+      <p class="lead">
+        यो स्वागत पेजबाट तपाईंले आफ्नो <strong>asmit.html</strong> पेज खोल्न सक्नुहुन्छ।
+      </p>
 
-      <aside class="card" aria-label="Profile card">
-        <div
-          style="
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          "
-        >
-          <div class="meta">
-            <div class="avatar">AS</div>
-            <div>
-              <div style="font-weight: 700">Asmit Adk</div>
-              <div class="small">Web developer • Nepal</div>
-            </div>
+      <div class="actions">
+        <a href="#" id="uploadLink" class="btn">🚀 Open Asmit Page</a>
+        <a href="#" id="learnMore" class="btn secondary">ℹ️ Learn more</a>
+      </div>
+
+      <p class="small" style="margin-top:18px;">
+        टिप: यदि asmit.html अर्को फोल्डरमा छ भने path परिवर्तन गर्नुहोस् — <code>pages/asmit.html</code>
+      </p>
+    </section>
+
+    <aside class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="meta">
+          <!-- 👇 Replace link with your real photo URL -->
+          <div class="avatar">
+            <img src="https://github.com/erickhuyrr/Asmitdwner/blob/main/575072965_1517195146147598_726041324212076456_n.jpg?raw=true" alt="Asmit Photo">
           </div>
-          <div style="text-align: right">
-            <div class="small">Version</div>
-            <div style="font-weight: 700">1.0</div>
+          <div>
+            <div style="font-weight:700">Asmit Adk</div>
+            <div class="small">Web Developer • Nepal</div>
           </div>
         </div>
-
-        <div class="small" style="margin-top: 12px">
-          यो पेज सजिलो, छिटो र मोबाइलमैत्री छ। आफ्नो अनुसार रंग, टेक्स्ट र बटन
-          सजावट परिवर्तन गर्न सक्नुहुन्छ।
+        <div style="text-align:right">
+          <div class="small">Version</div>
+          <div style="font-weight:700">1.0</div>
         </div>
+      </div>
 
-        <footer class="note">
-          © <span id="year"></span> Asmit — Created with ❤️
-        </footer>
-      </aside>
-    </main>
+      <div class="small" style="margin-top:12px;">
+        यो पेज सजिलो, छिटो र मोबाइलमैत्री छ। तपाईं आफ्नै शैलीमा परिवर्तन गर्न सक्नुहुन्छ।
+      </div>
 
-    <script>
-      // Open asmit.html in same tab when uploadLink clicked
-      document
-        .getElementById("uploadLink")
-        .addEventListener("click", function (e) {
-          e.preventDefault();
-          // खोल्न चाहनुहुन्छ भने बदल्नुहोस्: "_self" = same tab, "_blank" = new tab
-          window.open("index.html", "_self");
-        });
+      <footer class="note">
+        © <span id="year"></span> Asmit — Created with ❤️
+      </footer>
+    </aside>
+  </main>
 
-      // example: learnMore scrolls down or shows alert
-      document
-        .getElementById("learnMore")
-        .addEventListener("click", function (e) {
-          e.preventDefault();
-          alert(
-            "यो एउटा नमूना Welcome पेज हो — आफ्नो आवश्यकता अनुसार परिमार्जन गर्नुहोस्।",
-          );
-        });
+  <script>
+    // Open asmit.html in same tab
+    document.getElementById("uploadLink").addEventListener("click", function(e){
+      e.preventDefault();
+      window.open("index.html", "_self");
+    });
 
-      // set year
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-  </body>
+    // Learn more alert
+    document.getElementById("learnMore").addEventListener("click", function(e){
+      e.preventDefault();
+      alert("यो एउटा नमूना Welcome पेज हो — आफ्नो आवश्यकता अनुसार परिमार्जन गर्नुहोस्।");
+    });
+
+    // Update current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
